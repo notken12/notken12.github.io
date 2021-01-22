@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random dog gif</title>
+</head>
+
+<body>
+    <img src="" alt="Doggie gif" id="gif">
+
+    <script>
+        function httpGetAsync(theUrl, callback)
+        {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function() { 
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                    callback(xmlHttp.responseText);
+            }
+            xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+            xmlHttp.send(null);
+        }
+        var img = document.getElementById("gif");
+        var endpoint = "https://api.giphy.com/v1/gifs/search";
+        var key = "sXpGFDGZs0Dv1mmNFvYaGUvYwKX0PWIh";
+
+        httpGetAsync(endpoint + "?api_key=" + key + "&limit=1&q=dog&lang=en&rating=pg-13&offset=" + Math.floor(Math.random() * 1000), function(t) {
+            var data = JSON.parse(t).data;
+            var src = data[0].embed_url;
+            console.log(data);
+            img.src = src;
+        });
+
+    </script>
+</body>
+
+</html>
