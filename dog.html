@@ -1,102 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Random dog gif</title>
-    <link rel="stylesheet" href="./fonts.css">
+    <link rel="stylesheet" href="./fonts.css" />
     <style>
-        #wrapper {
-            display: flex;
-            align-items: center;
-            margin-top: 16px;
-            position: absolute;
-            margin: auto;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            cursor: default;
-        }
+      #wrapper {
+        display: flex;
+        align-items: center;
+        margin-top: 16px;
+        position: absolute;
+        margin: auto;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        cursor: default;
+      }
 
-        #gif {
-            box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.75);
-            -webkit-box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.75);
-            -moz-box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.75);
-            transition: all 150ms ease;
-            cursor: pointer;
-            width: 500px;
-            max-width: calc(100vw - 32px);
-            margin: auto;
-            border-radius: 4px;
-        }
+      #gif {
+        box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.75);
+        transition: all 150ms ease;
+        cursor: pointer;
+        width: 500px;
+        max-width: calc(100vw - 32px);
+        margin: auto;
+        border-radius: 4px;
+      }
 
-        #gif:hover {
-            box-shadow: 4px 4px 21px 0px rgba(0, 0, 0, 0.74);
-            -webkit-box-shadow: 4px 4px 21px 0px rgba(0, 0, 0, 0.74);
-            -moz-box-shadow: 4px 4px 21px 0px rgba(0, 0, 0, 0.74);
-            transform: scale(1.02)
-        }
+      #gif:hover {
+        box-shadow: 4px 4px 21px 0px rgba(0, 0, 0, 0.74);
+        -webkit-box-shadow: 4px 4px 21px 0px rgba(0, 0, 0, 0.74);
+        -moz-box-shadow: 4px 4px 21px 0px rgba(0, 0, 0, 0.74);
+        transform: scale(1.02);
+      }
 
-        #link {
-            margin: auto;
-        }
+      #link {
+        margin: auto;
+      }
 
-        body {
-            background: #1E1E1E;
-            color: white;
-            font-family: Manrope, sans-serif;
-        }
+      body {
+        background: #1e1e1e;
+        color: white;
+        font-family: Manrope, sans-serif;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="wrapper">
-        <a id="link"><img id="gif"></a>
+      <a id="link"><img id="gif" /></a>
     </div>
-    <br>
-    <footer style="position: absolute; bottom: 0px;">
-        <button id="display" style="display: none;">Another!</button>
-        <h4 style="text-align: center; font-weight: normal; margin: 0; padding-bottom: 4px;">By notken12 1/21/2021 - Made with the Giphy API</h4>
+    <br />
+    <footer style="position: absolute; bottom: 0px">
+      <button id="display" style="display: none">Another!</button>
+      <h4
+        style="
+          text-align: center;
+          font-weight: normal;
+          margin: 0;
+          padding-bottom: 4px;
+        "
+      >
+        By notken12 1/21/2021 - Made with the Giphy API
+      </h4>
     </footer>
 
     <script>
-        function httpGetAsync(theUrl, callback) {
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.onreadystatechange = function () {
-                if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-                    callback(xmlHttp.responseText);
-            }
-            xmlHttp.open("GET", theUrl, true); // true for asynchronous 
-            xmlHttp.send(null);
-        }
-        var img = document.getElementById("gif");
-        var link = document.getElementById("link");
-        var button = document.getElementById("display");
-        var endpoint = "https://api.giphy.com/v1/gifs/search";
-        var key = "sXpGFDGZs0Dv1mmNFvYaGUvYwKX0PWIh";
+      function httpGetAsync(theUrl, callback) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function () {
+          if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+        };
+        xmlHttp.open("GET", theUrl, true); // true for asynchronous
+        xmlHttp.send(null);
+      }
+      var img = document.getElementById("gif");
+      var link = document.getElementById("link");
+      var button = document.getElementById("display");
+      var endpoint = "https://api.giphy.com/v1/gifs/search";
+      var key = "sXpGFDGZs0Dv1mmNFvYaGUvYwKX0PWIh";
 
-        function updateImage(t) {
-            var data = JSON.parse(t).data;
-            var src = data[0].images.original.url;
-            var href = data[0].url;
-            console.log(data);
-            img.src = "";
-            img.src = src;
-            link.href = href;
-            button.innerText = "Another!";
-        }
+      function updateImage(t) {
+        var data = JSON.parse(t).data;
+        var src = data[0].images.original.url;
+        var href = data[0].url;
+        console.log(data);
+        img.src = "";
+        img.src = src;
+        link.href = href;
+        button.innerText = "Another!";
+      }
 
-        function displayDog() {
-            button.innerText = "Loading dog...";
-            httpGetAsync(endpoint + "?api_key=" + key + "&limit=1&q=dog&lang=en&rating=pg-13&offset=" + Math.floor(Math.random() * 1000), updateImage);
-        }
-        displayDog();
+      function displayDog() {
+        button.innerText = "Loading dog...";
+        httpGetAsync(
+          endpoint +
+            "?api_key=" +
+            key +
+            "&limit=1&q=dog&lang=en&rating=pg-13&offset=" +
+            Math.floor(Math.random() * 1000),
+          updateImage
+        );
+      }
+      displayDog();
 
-        button.addEventListener("click", displayDog);
-
+      button.addEventListener("click", displayDog);
     </script>
-</body>
-
+  </body>
 </html>
