@@ -1,7 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Space+Mono&display=swap");
+@import url("https://www.nerdfonts.com/assets/fonts/Symbols-2048-em%20Nerd%20Font%20Complete.woff2");
+
+@font-face{font-family:'NerdFontsSymbols Nerd Font';src:url("https://www.nerdfonts.com/assets/fonts/Symbols-2048-em%20Nerd%20Font%20Complete.woff2") format("woff2");font-weight:normal;font-style:normal}
 
 :root {
-  font-family: "Space Mono", monospace;
+  font-family: "Space Mono", "NerdFontsSymbols Nerd Font", monospace;
   margin: 0;
   --background: #1f1f28;
   --foreground: #dcd7ba;
@@ -20,6 +23,11 @@ body {
   padding: 48px 16px;
   background: var(--background);
   color: var(--foreground);
+}
+
+i {
+  font-family: "NerdFontsSymbols Nerd Font";
+  font-style: normal;
 }
 
 h1,
